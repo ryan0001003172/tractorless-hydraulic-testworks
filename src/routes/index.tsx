@@ -561,15 +561,15 @@ function Contact() {
         <dl className="frame space-y-4 p-6">
           {([
             ["Telefone", "(35) 91001-6791", "tel:+5535910016791"],
-            ["E-mail", "hidroagri01@gmail.com", "mailto:hidroagri01@gmail.com"],
-            ["Endereço", "Rua Serra do Cipó, 95 — Pouso Alegre/MG", "https://maps.google.com/?q=Rua+Serra+do+Cip%C3%B3+95+Pouso+Alegre+MG"],
+            ["E-mail", "hidroagro01@gmail.com", "mailto:hidroagro01@gmail.com"],
+            ["Endereço", "Rua Serra do Cipó, 235 — Pouso Alegre/MG", "https://maps.google.com/?q=Rua+Serra+do+Cip%C3%B3+235+Pouso+Alegre+MG"],
           ] as const).map(([k, v, h]) => (
             <div key={k}>
               <dt className="tag text-muted-foreground">{k}</dt>
               <dd><a href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="underline decoration-accent underline-offset-4">{v}</a></dd>
             </div>
           ))}
-          <a href="https://maps.google.com/?q=Rua+Serra+do+Cip%C3%B3+95+Pouso+Alegre+MG" target="_blank" rel="noopener noreferrer" className="tag inline-block border-2 border-line px-4 py-2 hover:bg-muted">Abrir no mapa ↗</a>
+          <a href="https://maps.google.com/?q=Rua+Serra+do+Cip%C3%B3+235+Pouso+Alegre+MG" target="_blank" rel="noopener noreferrer" className="tag inline-block border-2 border-line px-4 py-2 hover:bg-muted">Abrir no mapa ↗</a>
         </dl>
       </div>
     </Section>
