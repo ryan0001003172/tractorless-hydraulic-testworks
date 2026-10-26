@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { z } from "zod";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import g3 from "@/assets/g3.jpg";
-const IMGS = [g1, g3, g2, g1, g3, g2];
+import bancadaCabine from "@/assets/bancada-cabine.jpg.asset.json";
+import bancadaManometros from "@/assets/bancada-manometros.jpg.asset.json";
+import motobomba from "@/assets/motobomba.jpg.asset.json";
+import tecnicoMedindo from "@/assets/tecnico-medindo.jpg.asset.json";
+import automacaoHidraulica from "@/assets/automacao-hidraulica.png.asset.json";
+import plantacaoTomate from "@/assets/plantacao-tomate.jpg.asset.json";
+const IMGS = [bancadaCabine.url, bancadaManometros.url, motobomba.url, tecnicoMedindo.url, automacaoHidraulica.url, plantacaoTomate.url];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -435,17 +438,16 @@ function Differentials() {
 }
 
 function Gallery() {
-  const figs = ["Vista geral da bancada", "Conjunto motor elétrico + redução", "Bomba L2F160 e acoplamento", "Motores hidráulicos M-201 / M-202", "Painel elétrico e inversor", "Desenho de conjunto"];
+  const figs = ["Bancada com cabine de proteção e painel de comando", "Bancada hidráulica com painel de manômetros e maleta de medição", "Conjunto motobomba com manômetros de pressão", "Medição com manômetro acoplado ao conjunto", "Válvulas, mangueiras e automação hidráulica", "Aplicação no campo: cultivo tutorado de tomate"];
   return (
     <Section id="galeria">
       <SectionHead n="05" id="galeria" title="Galeria" kicker="Pranchas e fotos" />
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {figs.map((c, i) => (
           <figure key={c} className="frame p-2">
-            <img src={IMGS[i]} alt={`${c} (imagem provisória)`} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full border border-line object-cover" />
+            <img src={IMGS[i]} alt={c} loading="lazy" className="aspect-[4/3] w-full border border-line object-cover" />
             <figcaption className="mt-2 flex justify-between gap-2 text-sm">
               <span><strong className="tag">Fig. {i + 1}</strong> — {c}</span>
-              <span className="tag text-accent">[EXEMPLO]</span>
             </figcaption>
           </figure>
         ))}
