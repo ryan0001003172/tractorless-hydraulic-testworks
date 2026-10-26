@@ -140,12 +140,11 @@ function Header() {
 }
 
 /* ---------- Esquema hidráulico animado ---------- */
-function Gauge({ x, y, tag }: { x: number; y: number; tag: string }) {
+function Gauge({ x, y }: { x: number; y: number }) {
   return (
     <g>
       <circle cx={x} cy={y} r="13" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
       <line x1={x} y1={y} x2={x + 7} y2={y - 7} stroke="var(--accent)" strokeWidth="2" />
-      <text x={x} y={y - 19} textAnchor="middle" className="tag" fill="var(--line)" fontSize="9">{tag}</text>
     </g>
   );
 }
@@ -171,10 +170,7 @@ function Schematic() {
       {t(110, 236, "F-101", "start")}
       {/* motor elétrico + redução */}
       <circle cx="40" cy="120" r="20" {...L} />
-      {t(40, 124, "M")}
-      {t(40, 155, "ME-001")}
       <rect x="70" y="108" width="24" height="24" {...L} />
-      {t(82, 100, "RED.")}
       <line x1="60" y1="120" x2="70" y2="120" {...L} />
       <line x1="94" y1="120" x2="110" y2="120" stroke="var(--line)" strokeWidth="3" />
       {/* bomba */}
@@ -182,31 +178,26 @@ function Schematic() {
       <polygon points="130,103 120,118 140,118" fill="var(--line)" />
       <path d="M118 108 L142 132" stroke="var(--line)" strokeWidth="1.5" />
       <g className="spin-slow"><line x1="130" y1="112" x2="130" y2="128" stroke="var(--accent)" strokeWidth="2" /></g>
-      {t(130, 160, "B-101 L2F160")}
       <path d="M85 215 V180 H130 V140" {...F} />
       {/* linha de pressão */}
       <path d="M130 100 V60 H470" {...F} />
-      <Gauge x={200} y={60} tag="PI-101" />
+      <Gauge x={200} y={60} />
       {/* válvula de alívio */}
       <path d="M260 60 V100" {...F} />
       <rect x="248" y="100" width="24" height="34" {...L} />
       <path d="M254 126 L266 108 M262 108 h4 v4" stroke="var(--line)" strokeWidth="1.5" fill="none" />
-      {t(280, 120, "V-101 ALÍVIO", "start")}
       <path d="M260 134 V318 H140" {...F} />
       {/* medidor de vazão */}
       <rect x="320" y="48" width="34" height="24" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
-      {t(337, 64, "FT")}
-      {t(337, 40, "FT-101")}
       {/* motores hidráulicos */}
       <path d="M410 60 V150" {...F} />
       <path d="M470 60 V150" {...F} />
-      {[410, 470].map((x, i) => (
+      {[410, 470].map((x) => (
         <g key={x}>
           <circle cx={x} cy="170" r="20" {...L} />
           <polygon points={`${x},187 ${x - 10},172 ${x + 10},172`} fill="var(--line)" />
           <g className="spin-slow"><line x1={x - 9} y1="170" x2={x + 9} y2="170" stroke="var(--accent)" strokeWidth="2" /></g>
-          {t(x, 205, `M-20${i + 1}`)}
-          <Gauge x={x} y={250} tag={`PI-20${i + 1}`} />
+          <Gauge x={x} y={250} />
           <path d={`M${x} 190 V237`} {...F} />
           <path d={`M${x} 263 V318`} {...F} />
         </g>
@@ -217,8 +208,6 @@ function Schematic() {
         <rect width="222" height="42" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
         <line x1="0" y1="20" x2="222" y2="20" stroke="var(--line)" />
         <line x1="130" y1="0" x2="130" y2="42" stroke="var(--line)" />
-        <text x="6" y="14" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">HIDROTECH · ESQUEMA</text>
-        <text x="136" y="14" fontSize="9" fill="var(--accent)" fontFamily="var(--font-mono)">DES. HT-001</text>
         <text x="6" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">150 L/min · 150 bar</text>
         <text x="136" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">REV. A</text>
       </g>
@@ -392,7 +381,6 @@ function Calculator() {
               return (
                 <g key={i}>
                   <line x1={100 + 62 * Math.cos(a)} y1={80 + 62 * Math.sin(a)} x2={100 + 70 * Math.cos(a)} y2={80 + 70 * Math.sin(a)} stroke="var(--line)" strokeWidth="2" />
-                  <text x={100 + 50 * Math.cos(a)} y={83 + 50 * Math.sin(a)} textAnchor="middle" fontSize="8" fill="var(--line)" fontFamily="var(--font-mono)">{i * 50}</text>
                 </g>
               );
             })}
@@ -400,7 +388,6 @@ function Calculator() {
               <line x1="100" y1="80" x2="100" y2="22" stroke="var(--accent)" strokeWidth="3" />
             </g>
             <circle cx="100" cy="80" r="5" fill="var(--line)" />
-            <text x="100" y="124" textAnchor="middle" fontSize="11" fill="var(--line)" fontFamily="var(--font-mono)">{p} bar · PI-101</text>
           </svg>
           <dl className="mt-4 divide-y divide-border border-y border-line">
             {out.map(([k, v]) => (
