@@ -114,7 +114,6 @@ function RootShell({ children }: { children: ReactNode }) {
               "try{if(localStorage.getItem('ht-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}",
           }}
         />
-      <head>
         <HeadContent />
       </head>
       <body>
