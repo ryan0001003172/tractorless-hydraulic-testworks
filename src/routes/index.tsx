@@ -1,16 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { z } from "zod";
-import bancadaCabine from "@/assets/bancada-cabine.jpg.asset.json";
-import bancadaManometros from "@/assets/bancada-manometros.jpg.asset.json";
-import motobomba from "@/assets/motobomba.jpg.asset.json";
-import tecnicoMedindo from "@/assets/tecnico-medindo.jpg.asset.json";
-import automacaoHidraulica from "@/assets/automacao-hidraulica.png.asset.json";
-import plantacaoTomate from "@/assets/plantacao-tomate.jpg.asset.json";
+import iaCabine from "@/assets/ia-cabine.jpg";
+import iaManometros from "@/assets/ia-manometros.jpg";
+import iaMotobomba from "@/assets/ia-motobomba.jpg";
+import iaTecnico from "@/assets/ia-tecnico.jpg";
+import iaValvulas from "@/assets/ia-valvulas.jpg";
+import iaCampo from "@/assets/ia-campo.jpg";
 import iaAcionamento from "@/assets/ia-acionamento.jpg";
 import iaInversor from "@/assets/ia-inversor.jpg";
 import iaImplemento from "@/assets/ia-implemento.jpg";
-const IMGS = [bancadaCabine.url, bancadaManometros.url, motobomba.url, tecnicoMedindo.url, automacaoHidraulica.url, plantacaoTomate.url, iaAcionamento, iaInversor, iaImplemento];
+import iaOficina from "@/assets/ia-oficina.jpg";
+const IMGS = [iaCabine, iaManometros, iaMotobomba, iaTecnico, iaValvulas, iaCampo, iaAcionamento, iaInversor, iaImplemento];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -280,6 +281,10 @@ function About() {
           </ul>
         </div>
       </div>
+      <figure className="frame mt-8 p-2">
+        <img src={iaOficina} alt="Oficina com bancada de ensaio hidráulico, sem trator" loading="lazy" width={1536} height={640} className="aspect-[12/5] w-full border border-line object-cover" />
+        <figcaption className="tag mt-2 text-muted-foreground">Ensaios em ambiente controlado, sem trator — imagem ilustrativa <Ex /></figcaption>
+      </figure>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
         {[
           ["Missão", "Oferecer bancadas de ensaio hidráulico seguras e econômicas, que eliminem a dependência do trator nos testes de implementos."],
@@ -441,7 +446,7 @@ function Differentials() {
 }
 
 function Gallery() {
-  const figs = ["Bancada com cabine de proteção e painel de comando", "Bancada hidráulica com painel de manômetros e maleta de medição", "Conjunto motobomba com manômetros de pressão", "Medição com manômetro acoplado ao conjunto", "Válvulas, mangueiras e automação hidráulica", "Aplicação no campo: cultivo tutorado de tomate", "Acionamento: motor elétrico, redução e bomba [EXEMPLO – imagem ilustrativa]", "Painel elétrico com inversor de frequência [EXEMPLO – imagem ilustrativa]", "Implemento conectado à bancada, sem trator [EXEMPLO – imagem ilustrativa]"];
+  const figs = ["Bancada com cabine de proteção e painel de comando", "Painel de manômetros e medidor de vazão", "Conjunto motobomba com manômetros", "Leitura de pressão durante o ensaio", "Bloco de válvulas, filtro e mangueiras", "Aplicação no campo: plantio", "Acionamento: motor elétrico, redução e bomba", "Painel elétrico com inversor de frequência", "Implemento conectado à bancada, sem trator"];
   return (
     <Section id="galeria">
       <SectionHead n="05" id="galeria" title="Galeria" kicker="Pranchas e fotos" />
@@ -450,7 +455,7 @@ function Gallery() {
           <figure key={c} className="frame p-2">
             <img src={IMGS[i]} alt={c} loading="lazy" className="aspect-[4/3] w-full border border-line object-cover" />
             <figcaption className="mt-2 flex justify-between gap-2 text-sm">
-              <span><strong className="tag">Fig. {i + 1}</strong> — {c}</span>
+              <span><strong className="tag">Fig. {i + 1}</strong> — {c} <Ex /></span>
             </figcaption>
           </figure>
         ))}
