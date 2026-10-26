@@ -462,7 +462,7 @@ const TESTI = [
 function Testimonials() {
   const [i, setI] = useState(0);
   const go = (d: number) => setI((i + d + TESTI.length) % TESTI.length);
-  const [q, who, org] = TESTI[i];
+  const [q, who, org] = TESTI[i] ?? TESTI[0];
   return (
     <Section id="depoimentos">
       <SectionHead n="06" id="depoimentos" title="Depoimentos" kicker="Exemplos fictícios" />
