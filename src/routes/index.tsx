@@ -210,10 +210,10 @@ function Schematic() {
         <rect width="222" height="42" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
         <line x1="0" y1="20" x2="222" y2="20" stroke="var(--line)" />
         <line x1="130" y1="0" x2="130" y2="42" stroke="var(--line)" />
-        <text x="6" y="14" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">HIDROTECH · ESQ. PRINCÍPIO</text>
+        <text x="6" y="14" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">HIDROTECH · ESQUEMA</text>
         <text x="136" y="14" fontSize="9" fill="var(--accent)" fontFamily="var(--font-mono)">DES. HT-001</text>
         <text x="6" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">150 L/min · 150 bar</text>
-        <text x="136" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">ESC. S/E · REV. A</text>
+        <text x="136" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">REV. A</text>
       </g>
     </svg>
   );
