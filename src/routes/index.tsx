@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
 import { z } from "zod";
+import g1 from "@/assets/g1.jpg";
+import g2 from "@/assets/g2.jpg";
+import g3 from "@/assets/g3.jpg";
+const IMGS = [g1, g3, g2, g1, g3, g2];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -438,12 +442,10 @@ function Gallery() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {figs.map((c, i) => (
           <figure key={c} className="frame p-2">
-            <div className="flex aspect-[4/3] items-center justify-center border border-dashed border-line bg-muted">
-              <span className="tag text-muted-foreground">Espaço para foto/desenho</span>
-            </div>
+            <img src={IMGS[i]} alt={`${c} (imagem provisória)`} loading="lazy" width={1024} height={768} className="aspect-[4/3] w-full border border-line object-cover" />
             <figcaption className="mt-2 flex justify-between gap-2 text-sm">
               <span><strong className="tag">Fig. {i + 1}</strong> — {c}</span>
-              <span className="tag text-muted-foreground">ESC. —</span>
+              <span className="tag text-accent">[EXEMPLO]</span>
             </figcaption>
           </figure>
         ))}
