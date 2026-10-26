@@ -140,77 +140,81 @@ function Header() {
 }
 
 /* ---------- Esquema hidráulico animado ---------- */
-function Gauge({ x, y }: { x: number; y: number }) {
+function SchGauge({ x, y }: { x: number; y: number }) {
   return (
     <g>
-      <circle cx={x} cy={y} r="13" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
-      <line x1={x} y1={y} x2={x + 7} y2={y - 7} stroke="var(--accent)" strokeWidth="2" />
+      <circle cx={x} cy={y} r="14" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
+      <line x1={x} y1={y} x2={x + 8} y2={y - 8} stroke="var(--accent)" strokeWidth="2" />
     </g>
   );
 }
+
+function SchMotor({ x, y }: { x: number; y: number }) {
+  return (
+    <g>
+      <circle cx={x} cy={y} r="26" fill="var(--muted)" stroke="var(--line)" strokeWidth="1.5" />
+      <polygon points={`${x},${y - 16} ${x - 9},${y + 4} ${x + 9},${y + 4}`} fill="var(--line)" />
+      <g className="spin-slow"><line x1={x - 13} y1={y} x2={x + 13} y2={y} stroke="var(--accent)" strokeWidth="2" /></g>
+    </g>
+  );
+}
+
 function Schematic() {
   const L = { stroke: "var(--line)", strokeWidth: 1.5, fill: "none" };
+  const T = { stroke: "var(--line)", strokeWidth: 1.5, fill: "var(--muted)" };
   const F = { stroke: "var(--fluid)", strokeWidth: 2.5, fill: "none", className: "flow" };
-  const t = (x: number, y: number, s: string, a: "start" | "middle" = "middle") => (
-    <text x={x} y={y} textAnchor={a} fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">{s}</text>
-  );
   return (
-    <svg viewBox="0 0 560 380" className="h-auto w-full" role="img" aria-labelledby="sch-t sch-d">
+    <svg viewBox="0 0 560 340" className="h-auto w-full" role="img" aria-labelledby="sch-t sch-d">
       <title id="sch-t">Esquema de princípio da bancada HidroTech</title>
-      <desc id="sch-d">Reservatório, filtro, motor elétrico com redução acionando a bomba L2F160, válvula de alívio, manômetros, medidor de vazão e dois motores hidráulicos em paralelo.</desc>
-      <rect x="4" y="4" width="552" height="372" {...L} />
+      <desc id="sch-d">Reservatório, filtro, motor elétrico com redução acionando a bomba, válvula de alívio, medidor de vazão, manômetros e dois motores hidráulicos em paralelo.</desc>
+      <rect x="4" y="4" width="552" height="332" {...L} />
       {/* reservatório */}
-      <rect x="30" y="290" width="110" height="55" {...L} />
-      <path d="M30 312 H140" stroke="var(--fluid)" strokeWidth="1" strokeDasharray="3 3" />
-      {t(85, 337, "T-001 RESERV.")}
-      {/* filtro */}
-      <path d="M85 290 V250" {...F} />
-      <polygon points="85,215 100,232 85,249 70,232" {...L} />
-      <line x1="72" y1="232" x2="98" y2="232" stroke="var(--line)" strokeDasharray="2 2" />
-      {t(110, 236, "F-101", "start")}
-      {/* motor elétrico + redução */}
-      <circle cx="40" cy="120" r="20" {...L} />
-      <rect x="70" y="108" width="24" height="24" {...L} />
-      <line x1="60" y1="120" x2="70" y2="120" {...L} />
-      <line x1="94" y1="120" x2="110" y2="120" stroke="var(--line)" strokeWidth="3" />
-      {/* bomba */}
-      <circle cx="130" cy="120" r="20" {...L} />
-      <polygon points="130,103 120,118 140,118" fill="var(--line)" />
-      <path d="M118 108 L142 132" stroke="var(--line)" strokeWidth="1.5" />
-      <g className="spin-slow"><line x1="130" y1="112" x2="130" y2="128" stroke="var(--accent)" strokeWidth="2" /></g>
-      <path d="M85 215 V180 H130 V140" {...F} />
+      <rect x="36" y="230" width="180" height="78" {...L} />
+      <rect x="37.5" y="258" width="177" height="49" fill="var(--fluid)" opacity="0.15" />
+      <path d="M36 258 H216" stroke="var(--fluid)" strokeWidth="1" strokeDasharray="3 3" />
+      {/* sucção e filtro */}
+      <path d="M120 230 V206" {...F} />
+      <polygon points="120,166 140,186 120,206 100,186" {...T} />
+      <line x1="104" y1="186" x2="136" y2="186" stroke="var(--line)" strokeDasharray="2 2" />
+      <path d="M120 166 V150 H170 V136" {...F} />
+      {/* motor elétrico, redução e bomba */}
+      <circle cx="64" cy="110" r="26" fill="var(--muted)" stroke="var(--line)" strokeWidth="1.5" />
+      <circle cx="64" cy="110" r="6" fill="var(--line)" />
+      <g className="spin-slow"><line x1="52" y1="110" x2="76" y2="110" stroke="var(--accent)" strokeWidth="2" /></g>
+      <line x1="90" y1="110" x2="96" y2="110" stroke="var(--line)" strokeWidth="3" />
+      <rect x="96" y="94" width="28" height="32" {...T} />
+      <line x1="100" y1="122" x2="120" y2="98" stroke="var(--line)" strokeWidth="1.5" />
+      <line x1="124" y1="110" x2="144" y2="110" stroke="var(--line)" strokeWidth="3" />
+      <circle cx="170" cy="110" r="26" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
+      <polygon points="170,88 159,108 181,108" fill="var(--line)" />
+      <line x1="156" y1="96" x2="184" y2="124" stroke="var(--line)" strokeWidth="1.5" />
+      <g className="spin-slow"><line x1="170" y1="97" x2="170" y2="123" stroke="var(--accent)" strokeWidth="2" /></g>
       {/* linha de pressão */}
-      <path d="M130 100 V60 H470" {...F} />
-      <Gauge x={200} y={60} />
+      <path d="M170 84 V48 H520" {...F} />
+      <SchGauge x={252} y={48} />
       {/* válvula de alívio */}
-      <path d="M260 60 V100" {...F} />
-      <rect x="248" y="100" width="24" height="34" {...L} />
-      <path d="M254 126 L266 108 M262 108 h4 v4" stroke="var(--line)" strokeWidth="1.5" fill="none" />
-      <path d="M260 134 V318 H140" {...F} />
+      <path d="M300 48 V86" {...F} />
+      <rect x="286" y="86" width="28" height="44" {...T} />
+      <polygon points="300,98 293,116 307,116" fill="var(--line)" />
+      <path d="M300 130 V212 H150 V230" {...F} />
       {/* medidor de vazão */}
-      <rect x="320" y="48" width="34" height="24" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
-      {/* motores hidráulicos */}
-      <path d="M410 60 V150" {...F} />
-      <path d="M470 60 V150" {...F} />
-      {[410, 470].map((x) => (
+      <rect x="356" y="36" width="48" height="24" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
+      <line x1="372" y1="40" x2="372" y2="56" stroke="var(--line)" />
+      <line x1="388" y1="40" x2="388" y2="56" stroke="var(--line)" />
+      <path d="M364 56 L396 40" stroke="var(--accent)" strokeWidth="1.5" fill="none" />
+      {/* saída fechada */}
+      <rect x="520" y="40" width="14" height="16" fill="var(--line)" />
+      {/* motores hidráulicos em paralelo */}
+      {[424, 486].map((x) => (
         <g key={x}>
-          <circle cx={x} cy="170" r="20" {...L} />
-          <polygon points={`${x},187 ${x - 10},172 ${x + 10},172`} fill="var(--line)" />
-          <g className="spin-slow"><line x1={x - 9} y1="170" x2={x + 9} y2="170" stroke="var(--accent)" strokeWidth="2" /></g>
-          <Gauge x={x} y={250} />
-          <path d={`M${x} 190 V237`} {...F} />
-          <path d={`M${x} 263 V318`} {...F} />
+          <path d={`M${x} 48 V124`} {...F} />
+          <SchMotor x={x} y={150} />
+          <path d={`M${x} 176 V194`} {...F} />
+          <SchGauge x={x} y={208} />
+          <path d={`M${x} 222 V286`} {...F} />
         </g>
       ))}
-      <path d="M470 318 H260" {...F} />
-      {/* carimbo */}
-      <g transform="translate(330 330)">
-        <rect width="222" height="42" fill="var(--card)" stroke="var(--line)" strokeWidth="1.5" />
-        <line x1="0" y1="20" x2="222" y2="20" stroke="var(--line)" />
-        <line x1="130" y1="0" x2="130" y2="42" stroke="var(--line)" />
-        <text x="6" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">150 L/min · 150 bar</text>
-        <text x="136" y="34" fontSize="9" fill="var(--line)" fontFamily="var(--font-mono)">REV. A</text>
-      </g>
+      <path d="M486 286 H216" {...F} />
     </svg>
   );
 }
