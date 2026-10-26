@@ -7,7 +7,10 @@ import motobomba from "@/assets/motobomba.jpg.asset.json";
 import tecnicoMedindo from "@/assets/tecnico-medindo.jpg.asset.json";
 import automacaoHidraulica from "@/assets/automacao-hidraulica.png.asset.json";
 import plantacaoTomate from "@/assets/plantacao-tomate.jpg.asset.json";
-const IMGS = [bancadaCabine.url, bancadaManometros.url, motobomba.url, tecnicoMedindo.url, automacaoHidraulica.url, plantacaoTomate.url];
+import iaAcionamento from "@/assets/ia-acionamento.jpg";
+import iaInversor from "@/assets/ia-inversor.jpg";
+import iaImplemento from "@/assets/ia-implemento.jpg";
+const IMGS = [bancadaCabine.url, bancadaManometros.url, motobomba.url, tecnicoMedindo.url, automacaoHidraulica.url, plantacaoTomate.url, iaAcionamento, iaInversor, iaImplemento];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -438,7 +441,7 @@ function Differentials() {
 }
 
 function Gallery() {
-  const figs = ["Bancada com cabine de proteção e painel de comando", "Bancada hidráulica com painel de manômetros e maleta de medição", "Conjunto motobomba com manômetros de pressão", "Medição com manômetro acoplado ao conjunto", "Válvulas, mangueiras e automação hidráulica", "Aplicação no campo: cultivo tutorado de tomate"];
+  const figs = ["Bancada com cabine de proteção e painel de comando", "Bancada hidráulica com painel de manômetros e maleta de medição", "Conjunto motobomba com manômetros de pressão", "Medição com manômetro acoplado ao conjunto", "Válvulas, mangueiras e automação hidráulica", "Aplicação no campo: cultivo tutorado de tomate", "Acionamento: motor elétrico, redução e bomba [EXEMPLO – imagem ilustrativa]", "Painel elétrico com inversor de frequência [EXEMPLO – imagem ilustrativa]", "Implemento conectado à bancada, sem trator [EXEMPLO – imagem ilustrativa]"];
   return (
     <Section id="galeria">
       <SectionHead n="05" id="galeria" title="Galeria" kicker="Pranchas e fotos" />
