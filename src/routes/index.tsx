@@ -458,7 +458,7 @@ const TESTI = [
   ["Conseguimos testar o sistema hidráulico das plantadeiras sem tirar o trator da lavoura.", "Gerente de produção", "Fabricante de implementos"],
   ["Os ensaios ficaram repetíveis; a mesma pressão e vazão em todos os lotes.", "Técnico de qualidade", "Centro de ensaios"],
   ["Bancada usada em aulas práticas de hidráulica com segurança.", "Coordenador de curso", "Escola técnica"],
-];
+] as const;
 function Testimonials() {
   const [i, setI] = useState(0);
   const go = (d: number) => setI((i + d + TESTI.length) % TESTI.length);
@@ -559,11 +559,11 @@ function Contact() {
           )}
         </form>
         <dl className="frame space-y-4 p-6">
-          {[
+          {([
             ["Telefone", "(00) 0000-0000 [EXEMPLO]", "tel:+550000000000"],
             ["E-mail", "contato@hidrotech.com.br [EXEMPLO]", "mailto:contato@hidrotech.com.br"],
             ["Endereço", "Rua Exemplo, 123 — Cidade/UF [EXEMPLO]", "https://maps.google.com/?q=Rua+Exemplo+123"],
-          ].map(([k, v, h]) => (
+          ] as const).map(([k, v, h]) => (
             <div key={k}>
               <dt className="tag text-muted-foreground">{k}</dt>
               <dd><a href={h} target={h.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="underline decoration-accent underline-offset-4">{v}</a></dd>
